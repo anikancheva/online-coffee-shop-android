@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_green"
+    android:padding="20dp"
+    tools:context=".OrderActivity">
+
+
+    <TextView
+        android:id="@+id/create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create your coffee"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/txtCaffeine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCaffeine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Type:"
+        android:textSize="15sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintBottom_toTopOf="@+id/txtSize"
+        app:layout_constraintStart_toStartOf="@+id/txtSize"
+        app:layout_constraintTop_toBottomOf="@+id/create"
+        app:layout_constraintVertical_bias="0.419" />
+
+    <RadioGroup
+        android:id="@+id/coffeeType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:paddingRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create">
+
+        <RadioButton
+            android:id="@+id/reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Regular" />
+
+        <RadioButton
+            android:id="@+id/decaf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decaf" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Size:"
+        android:textSize="15sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintStart_toStartOf="@+id/txtStyle"
+        app:layout_constraintTop_toBottomOf="@+id/txtCaffeine" />
+
+    <RadioGroup
+        android:id="@+id/coffeeSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtSize"
+        app:layout_constraintStart_toStartOf="@+id/coffeeType"
+        app:layout_constraintTop_toBottomOf="@+id/coffeeType">
+
+        <RadioButton
+            android:id="@+id/large"
+            android:layout_width="78dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:text="Large"
+            tools:layout_editor_absoluteX="88dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <RadioButton
+            android:id="@+id/medium"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:padding="5dp"
+            android:text="Medium"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <RadioButton
+            android:id="@+id/small"
+            android:layout_width="82dp"
+            android:layout_height="41dp"
+            android:padding="5dp"
+            android:text="Small"
+            tools:layout_editor_absoluteX="239dp"
+            tools:layout_editor_absoluteY="297dp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Style:"
+        android:textSize="15sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintStart_toStartOf="@+id/txtFlavor"
+        app:layout_constraintTop_toBottomOf="@+id/txtSize" />
+
+    <RadioGroup
+        android:id="@+id/coffeeStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtStyle"
+        app:layout_constraintTop_toBottomOf="@+id/coffeeSize">
+
+        <RadioButton
+            android:id="@+id/americano"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:padding="5dp"
+            android:text="Americano"
+            tools:layout_editor_absoluteX="88dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <RadioButton
+            android:id="@+id/latte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Latte"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <RadioButton
+            android:id="@+id/cappuccino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Cappuccino"
+            tools:layout_editor_absoluteX="239dp"
+            tools:layout_editor_absoluteY="297dp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtFlavor"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Add flavor: (extra 50c)"
+        android:textSize="15sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintStart_toStartOf="@+id/txtAdditional"
+        app:layout_constraintTop_toBottomOf="@+id/txtStyle" />
+
+    <LinearLayout
+        android:id="@+id/flavors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toEndOf="@+id/txtFlavor"
+        app:layout_constraintTop_toBottomOf="@+id/coffeeSize">
+
+        <CheckBox
+            android:id="@+id/vanilla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vanilla" />
+
+        <CheckBox
+            android:id="@+id/cocoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cocoa" />
+
+        <CheckBox
+            android:id="@+id/caramel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Caramel" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txtAdditional"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Additional choices:"
+        android:textSize="15sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFlavor" />
+
+    <CheckBox
+        android:id="@+id/sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sugar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAdditional" />
+
+    <CheckBox
+        android:id="@+id/cream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cream"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sugar" />
+
+
+    <TextView
+        android:id="@+id/txtSpcl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Special Requests:"
+        android:textSize="15sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cream" />
+
+    <EditText
+        android:id="@+id/spclReq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="If there is anything you want but couldn't find in our menu..."
+        android:textSize="12sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSpcl" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spclReq"
+        android:text="Order now"
+        android:textSize="15dp"
+        android:textStyle="italic"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
