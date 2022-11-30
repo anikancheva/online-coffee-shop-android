@@ -9,15 +9,16 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        findViewById(R.id.btnGo).setOnClickListener(view -> {
-            startActivity(new Intent(this, OrderActivity.class));
-        });
+        findViewById(R.id.btnSignIn).setOnClickListener(view -> startActivity(new Intent(this, SignInActivity.class)));
+
+        findViewById(R.id.btnSignUp).setOnClickListener(view -> startActivity(new Intent(this, SignUpActivity.class)));
+
+
     }
 }
