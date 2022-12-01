@@ -15,54 +15,42 @@
         android:layout_height="wrap_content"
         android:text="Create your coffee"
         android:textAlignment="center"
+        android:textColor="@color/main_brown"
         android:textSize="30sp"
         android:textStyle="italic"
-        android:textColor="@color/main_brown"
-        app:layout_constraintBottom_toTopOf="@+id/txtCaffeine"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtDecaf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtCaffeine"
+        android:id="@+id/txtDecaf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Type:"
+        android:text="Decaf:"
+        android:textColor="@color/main_brown"
         android:textSize="15sp"
         android:textStyle="italic|bold"
-        android:textColor="@color/main_brown"
         app:layout_constraintBottom_toTopOf="@+id/txtSize"
         app:layout_constraintStart_toStartOf="@+id/txtSize"
         app:layout_constraintTop_toBottomOf="@+id/create"
-        app:layout_constraintVertical_bias="0.419" />
+        app:layout_constraintVertical_bias="0.5" />
 
-    <RadioGroup
-        android:id="@+id/coffeeType"
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/decaf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:paddingRight="10dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/coffeeSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create">
-
-        <RadioButton
-            android:id="@+id/reg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Regular" />
-
-        <RadioButton
-            android:id="@+id/decaf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Decaf" />
-
-    </RadioGroup>
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toEndOf="@+id/txtDecaf"
+        app:layout_constraintTop_toBottomOf="@+id/create"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/txtSize"
@@ -70,11 +58,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Size:"
+        android:textColor="@color/main_brown"
         android:textSize="15sp"
         android:textStyle="italic|bold"
-        android:textColor="@color/main_brown"
         app:layout_constraintStart_toStartOf="@+id/txtStyle"
-        app:layout_constraintTop_toBottomOf="@+id/txtCaffeine" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDecaf" />
 
     <RadioGroup
         android:id="@+id/coffeeSize"
@@ -84,8 +72,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtSize"
-        app:layout_constraintStart_toStartOf="@+id/coffeeType"
-        app:layout_constraintTop_toBottomOf="@+id/coffeeType">
+        app:layout_constraintStart_toStartOf="@+id/decaf"
+        app:layout_constraintTop_toBottomOf="@+id/decaf">
 
         <RadioButton
             android:id="@+id/large"
@@ -123,9 +111,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Style:"
+        android:textColor="@color/main_brown"
         android:textSize="15sp"
         android:textStyle="italic|bold"
-        android:textColor="@color/main_brown"
         app:layout_constraintStart_toStartOf="@+id/txtFlavor"
         app:layout_constraintTop_toBottomOf="@+id/txtSize" />
 
@@ -175,41 +163,28 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="Add flavor: (extra 50c)"
+        android:textColor="@color/main_brown"
         android:textSize="15sp"
         android:textStyle="italic|bold"
-        android:textColor="@color/main_brown"
         app:layout_constraintStart_toStartOf="@+id/txtAdditional"
         app:layout_constraintTop_toBottomOf="@+id/txtStyle" />
 
-    <LinearLayout
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/flavors"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtAdditional"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toEndOf="@+id/txtFlavor"
-        app:layout_constraintTop_toBottomOf="@+id/coffeeSize">
+        app:layout_constraintTop_toBottomOf="@+id/coffeeStyle"
+        app:layout_constraintVertical_bias="0.512">
 
-        <CheckBox
-            android:id="@+id/vanilla"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vanilla" />
 
-        <CheckBox
-            android:id="@+id/cocoa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cocoa" />
 
-        <CheckBox
-            android:id="@+id/caramel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Caramel" />
-
-    </LinearLayout>
-
+    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/txtAdditional"
@@ -217,9 +192,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Additional choices:"
+        android:textColor="@color/main_brown"
         android:textSize="15sp"
         android:textStyle="italic|bold"
-        android:textColor="@color/main_brown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -248,9 +223,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Special Requests:"
+        android:textColor="@color/main_brown"
         android:textSize="15sp"
         android:textStyle="italic|bold"
-        android:textColor="@color/main_brown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -275,14 +250,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
+        android:backgroundTint="@color/main_brown"
+        android:text="Order now"
+        android:textColor="@color/secondary_green"
+        android:textSize="15dp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spclReq"
-        android:text="Order now"
-        android:textSize="15dp"
-        android:textStyle="italic"
-        android:backgroundTint="@color/main_brown"
-        android:textColor="@color/secondary_green"/>
+        app:layout_constraintTop_toBottomOf="@+id/spclReq" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

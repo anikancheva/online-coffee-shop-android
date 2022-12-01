@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -15,6 +16,9 @@ public class OrderActivity extends AppCompatActivity {
         findViewById(R.id.btnOrder).setOnClickListener(view -> {
 
         });
+
+        RecyclerView rv=findViewById(R.id.flavors);
+        //rv.setAdapter();
     }
 
     @Override

@@ -37,6 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtLogoLg" />
 
     <LinearLayout
+        android:id="@+id/form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
@@ -52,45 +53,61 @@
             android:id="@+id/inputUsrname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:hint="username"
+            android:inputType="textPersonName"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <EditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:hint="email"
+            android:inputType="textEmailAddress"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/inputPassword"
+            android:id="@+id/inputPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:hint="password"
+            android:inputType="textPassword"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
+
         <EditText
             android:id="@+id/inputConfPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:hint="confirm password"
+            android:inputType="textPassword"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <Button
+            android:id="@+id/btnSignUpData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign up"
             android:backgroundTint="@color/main_brown"
-            android:textColor="@color/secondary_green"/>
+            android:text="Sign up"
+            android:textColor="@color/secondary_green" />
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnGoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:backgroundTint="@color/secondary_green"
+        android:text="Go back"
+        android:textColor="@color/secondary_brown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
