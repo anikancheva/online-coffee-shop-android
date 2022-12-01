@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        findViewById(R.id.btnSignIn).setOnClickListener(view -> startActivity(new Intent(this, SignInActivity.class)));
+        //TODO fix activity navigation for signin
+        findViewById(R.id.btnSignIn).setOnClickListener(view -> startActivity(new Intent(this, OrderActivity.class)));
 
         findViewById(R.id.btnSignUp).setOnClickListener(view -> startActivity(new Intent(this, SignUpActivity.class)));
 

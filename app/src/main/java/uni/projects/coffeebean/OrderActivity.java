@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -17,8 +21,14 @@ public class OrderActivity extends AppCompatActivity {
 
         });
 
+        List<Flavor> list=List.of(new Flavor("Vanilla"), new Flavor("Cocoa"), new Flavor("Apple"), new Flavor("Marshmallow"), new Flavor("Caramel"), new Flavor("Pumpkin Spice"),
+                new Flavor("Cinnamon"), new Flavor("Strawberry"), new Flavor("Watermelon"), new Flavor("Dragonfruit"), new Flavor("Melon"), new Flavor("Peach"));
+
         RecyclerView rv=findViewById(R.id.flavors);
-        //rv.setAdapter();
+        FlavorAdapter adapter=new FlavorAdapter(list);
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     @Override

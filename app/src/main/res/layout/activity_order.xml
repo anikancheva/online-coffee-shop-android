@@ -114,7 +114,7 @@
         android:textColor="@color/main_brown"
         android:textSize="15sp"
         android:textStyle="italic|bold"
-        app:layout_constraintStart_toStartOf="@+id/txtFlavor"
+        app:layout_constraintStart_toStartOf="@+id/txtName"
         app:layout_constraintTop_toBottomOf="@+id/txtSize" />
 
     <RadioGroup
@@ -158,7 +158,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/txtFlavor"
+        android:id="@+id/txtName"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -172,13 +172,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/flavors"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toTopOf="@+id/txtAdditional"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.122"
-        app:layout_constraintStart_toEndOf="@+id/txtFlavor"
+        app:layout_constraintStart_toEndOf="@+id/txtName"
         app:layout_constraintTop_toBottomOf="@+id/coffeeStyle"
         app:layout_constraintVertical_bias="0.512">
 
@@ -198,7 +198,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFlavor" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <CheckBox
         android:id="@+id/sugar"
