@@ -50,11 +50,11 @@
         app:layout_constraintVertical_bias="0.5">
 
         <EditText
-            android:id="@+id/inputUsrnameOrEmail"
+            android:id="@+id/inputUsr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName|textEmailAddress"
-            android:hint="username or email"
+            android:inputType="textPersonName"
+            android:hint="username"
             android:textSize="16sp"
             android:textStyle="italic"/>
 
@@ -66,6 +66,16 @@
             android:hint="password"
             android:textSize="16sp"
             android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/txtErrorSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/btnSignInData"

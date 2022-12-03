@@ -1,5 +1,6 @@
 package uni.projects.coffeebean;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,9 @@ public class OrderActivity extends AppCompatActivity {
 
         findViewById(R.id.btnOrder).setOnClickListener(view -> {
             Toast.makeText(this, "Order clicked", Toast.LENGTH_SHORT).show();
+
+            //TODO --add order to drinks list
+            //TODO --set view to my_orders
         });
 
 
@@ -42,13 +46,16 @@ public class OrderActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.myAccount) {
-            Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ProfileActivity.class));
 
         } else if (id == R.id.myOrders) {
-            Toast.makeText(this, "My orders clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MyOrdersActivity.class));
 
         } else if (id == R.id.signOut) {
-            Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
 
         }
 

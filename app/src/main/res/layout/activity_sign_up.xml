@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.5">
 
         <EditText
-            android:id="@+id/inputUsrname"
+            android:id="@+id/inputUsr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="username"
@@ -84,6 +84,16 @@
             android:inputType="textPassword"
             android:textSize="16sp"
             android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/txtErrorSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/btnSignUpData"
