@@ -4,14 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
@@ -24,10 +38,41 @@ public class OrderActivity extends AppCompatActivity {
 
 
         findViewById(R.id.btnOrder).setOnClickListener(view -> {
-            Toast.makeText(this, "Order clicked", Toast.LENGTH_SHORT).show();
 
-            //TODO --add order to drinks list
-            //TODO --set view to my_orders
+            SwitchCompat scDecaf = findViewById(R.id.decaf);
+
+            RadioGroup rgSize = findViewById(R.id.coffeeSize);
+            RadioButton rbSize = findViewById(rgSize.getCheckedRadioButtonId());
+
+            RadioGroup rgStyle = findViewById(R.id.coffeeStyle);
+            RadioButton rbStyle = findViewById(rgStyle.getCheckedRadioButtonId());
+
+            CheckBox cbSugar = findViewById(R.id.sugar);
+            CheckBox cbCream = findViewById(R.id.cream);
+            EditText etSpecial = findViewById(R.id.spclReq);
+
+            String type = scDecaf.isChecked() ? "decaf" : "regular";
+            String size = rbSize.getText().toString();
+            String style = rbStyle.getText().toString();
+            List<String> checkedFlavors = FlavorAdapter.CHECKED_FLAVORS;
+            if (cbSugar.isChecked()) {
+                checkedFlavors.add("Sugar");
+            }
+
+            if (cbCream.isChecked()) {
+                checkedFlavors.add("Cream");
+            }
+            String special = etSpecial.getText().toString();
+
+            Order order = new Order(type, size, style, checkedFlavors, special);
+            //TODO -- find logged user in db and add order to their orders array
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String username = getSharedPreferences("user", MODE_PRIVATE).getString("user", null);
+
+
+            startActivity(new Intent(this, MyOrdersActivity.class));
+            finish();
+
         });
 
 

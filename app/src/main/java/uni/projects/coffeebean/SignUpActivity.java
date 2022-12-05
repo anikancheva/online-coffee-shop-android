@@ -1,6 +1,7 @@
 package uni.projects.coffeebean;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -57,8 +58,11 @@ public class SignUpActivity extends AppCompatActivity {
                         etPass.setText("");
                         etConfPass.setText("");
                     } else {
+                        findViewById(R.id.pbSignUp).setVisibility(View.VISIBLE);
                         db.collection("users").add(userToReg)
                                 .addOnSuccessListener(documentReference -> {
+                                    SharedPreferences sp = getSharedPreferences("user", MODE_PRIVATE);
+                                    sp.edit().putString("user", usrName).apply();
                                     startActivity(new Intent(this, OrderActivity.class));
                                     finish();
                                 })

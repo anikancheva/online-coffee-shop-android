@@ -20,8 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView nameField=findViewById(R.id.usrnameField);
         TextView emailField=findViewById(R.id.emailField);
 
-        nameField.setText(R.string.username);
-        emailField.setText(R.string.email);
+
 
         findViewById(R.id.testBtnProf).setOnClickListener(view -> finish());
     }

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,9 +17,12 @@ public class MyOrdersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_drinks);
+        setContentView(R.layout.activity_my_orders);
 
-        findViewById(R.id.testBtnOrders).setOnClickListener(view -> finish());
+        findViewById(R.id.testBtnOrders).setOnClickListener(view -> {
+            ListView myList = findViewById(R.id.myList);
+
+        });
     }
 
     @Override

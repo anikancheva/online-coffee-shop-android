@@ -1,6 +1,7 @@
 package uni.projects.coffeebean;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -50,6 +51,9 @@ public class SignInActivity extends AppCompatActivity {
                         errorTxt.setText("Username or password don't match");
                         etPass.setText("");
                     } else {
+                        findViewById(R.id.pbSignIn).setVisibility(View.VISIBLE);
+                        SharedPreferences sp = getSharedPreferences("user", MODE_PRIVATE);
+                        sp.edit().putString("user", usr).apply();
                         startActivity(new Intent(this, OrderActivity.class));
                         finish();
                     }
