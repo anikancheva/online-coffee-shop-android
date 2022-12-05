@@ -14,6 +14,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SignUpActivity extends AppCompatActivity {
 
     TextView errorTxt;
@@ -40,13 +43,17 @@ public class SignUpActivity extends AppCompatActivity {
             if (validateInput(usrName, email, password, confPassword)) {
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                User userToReg = new User(usrName, email, password);
+                Map<String, String> user=new HashMap<>();
+                user.put("username", usrName);
+                user.put("email", email);
+                user.put("password", password);
+                user.put("orders", "");
 
                 db.collection("users").get().addOnCompleteListener(task -> {
                     boolean usrExists = false;
                     QuerySnapshot result = task.getResult();
-                    for (QueryDocumentSnapshot user : result) {
-                        if (user.get("username").equals(usrName)) {
+                    for (QueryDocumentSnapshot u : result) {
+                        if (u.get("username").equals(usrName)) {
                             usrExists = true;
                             break;
                         }
@@ -59,10 +66,11 @@ public class SignUpActivity extends AppCompatActivity {
                         etConfPass.setText("");
                     } else {
                         findViewById(R.id.pbSignUp).setVisibility(View.VISIBLE);
-                        db.collection("users").add(userToReg)
+                        db.collection("users").add(user)
                                 .addOnSuccessListener(documentReference -> {
                                     SharedPreferences sp = getSharedPreferences("user", MODE_PRIVATE);
-                                    sp.edit().putString("user", usrName).apply();
+                                    sp.edit().putString("username", usrName).apply();
+                                    sp.edit().putString("email", email).apply();
                                     startActivity(new Intent(this, OrderActivity.class));
                                     finish();
                                 })

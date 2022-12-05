@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,14 +16,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
@@ -64,13 +54,27 @@ public class OrderActivity extends AppCompatActivity {
             }
             String special = etSpecial.getText().toString();
 
-            Order order = new Order(type, size, style, checkedFlavors, special);
-            //TODO -- find logged user in db and add order to their orders array
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            String username = getSharedPreferences("user", MODE_PRIVATE).getString("user", null);
+//            Map<String, Object> order = new HashMap<>();
+//            order.put("type", type);
+//            order.put("size", size);
+//            order.put("style", style);
+//            order.put("flavors", checkedFlavors);
+//            order.put("special", special);
 
+            StringBuilder flavorBuilder = new StringBuilder();
+            checkedFlavors.forEach(f -> flavorBuilder.append(f).append(", "));
+            if (!checkedFlavors.isEmpty()) {
+                flavorBuilder.delete(flavorBuilder.length() - 2, flavorBuilder.length());
+            }
 
-            startActivity(new Intent(this, MyOrdersActivity.class));
+            Toast.makeText(this, "Successfull order!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, MyOrderActivity.class);
+            intent.putExtra("type", type);
+            intent.putExtra("size", size);
+            intent.putExtra("style", style);
+            intent.putExtra("flavors", flavorBuilder.toString());
+            intent.putExtra("special", special);
+            startActivity(intent);
             finish();
 
         });
@@ -94,7 +98,7 @@ public class OrderActivity extends AppCompatActivity {
             startActivity(new Intent(this, ProfileActivity.class));
 
         } else if (id == R.id.myOrders) {
-            startActivity(new Intent(this, MyOrdersActivity.class));
+            startActivity(new Intent(this, MyOrderActivity.class));
 
         } else if (id == R.id.signOut) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -109,9 +113,8 @@ public class OrderActivity extends AppCompatActivity {
 
     protected void setUpFlavorsRecyclerView() {
 
-        List<Flavor> list = List.of(new Flavor("Vanilla"), new Flavor("Cocoa"), new Flavor("Apple"), new Flavor("Marshmallow"),
-                new Flavor("Caramel"), new Flavor("Pumpkin Spice"), new Flavor("Cinnamon"), new Flavor("Strawberry"),
-                new Flavor("Watermelon"), new Flavor("Dragonfruit"), new Flavor("Melon"), new Flavor("Peppermint"));
+        List<String> list = List.of("Vanilla", "Cocoa", "Apple", "Marshmallow", "Caramel", "Pumpkin Spice", "Cinnamon", "Strawberry",
+                "Watermelon", "Dragonfruit", "Melon", "Peppermint");
 
         RecyclerView rv = findViewById(R.id.flavors);
         FlavorAdapter adapter = new FlavorAdapter(list);

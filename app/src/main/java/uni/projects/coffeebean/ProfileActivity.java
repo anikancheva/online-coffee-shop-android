@@ -1,6 +1,7 @@
 package uni.projects.coffeebean;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,10 +18,14 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        TextView nameField=findViewById(R.id.usrnameField);
-        TextView emailField=findViewById(R.id.emailField);
+        TextView nameField = findViewById(R.id.usrnameField);
+        TextView emailField = findViewById(R.id.emailField);
 
-
+        SharedPreferences sp=getSharedPreferences("user", MODE_PRIVATE);
+        String username = sp.getString("username", null);
+        String email = sp.getString("email", null);
+        nameField.setText(username);
+        emailField.setText(email);
 
         findViewById(R.id.testBtnProf).setOnClickListener(view -> finish());
     }
@@ -38,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.myOrders) {
-            startActivity(new Intent(this, MyOrdersActivity.class));
+            startActivity(new Intent(this, MyOrderActivity.class));
 
         } else if (id == R.id.signOut) {
 

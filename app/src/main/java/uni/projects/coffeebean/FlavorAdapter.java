@@ -19,11 +19,11 @@ import java.util.List;
 
 public class FlavorAdapter extends RecyclerView.Adapter<FlavorAdapter.FlavorViewHolder> {
 
-    private final List<Flavor> flavors;
+    private final List<String> flavors;
 
     public static List<String> CHECKED_FLAVORS;
 
-    public FlavorAdapter(List<Flavor> flavors){
+    public FlavorAdapter(List<String> flavors){
         this.flavors=flavors;
         CHECKED_FLAVORS=new ArrayList<>();
     }
@@ -40,7 +40,7 @@ public class FlavorAdapter extends RecyclerView.Adapter<FlavorAdapter.FlavorView
     public void onBindViewHolder(@NonNull FlavorViewHolder holder, int position) {
 
        TextView flavorName= holder.itemView.findViewById(R.id.txtName);
-       flavorName.setText(flavors.get(position).getName());
+       flavorName.setText(flavors.get(position));
 
         CheckBox cbFlavor=holder.itemView.findViewById(R.id.cbFlavor);
         cbFlavor.setOnCheckedChangeListener((compoundButton, b) -> {

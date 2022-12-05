@@ -30,18 +30,21 @@ public class SignInActivity extends AppCompatActivity {
             errorTxt = findViewById(R.id.txtErrorSignIn);
             String usr = etUsr.getText().toString();
             String password = etPass.getText().toString();
+            SharedPreferences sp = getSharedPreferences("user", MODE_PRIVATE);
 
             if (validateInput(usr, password)) {
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-
                 db.collection("users").get().addOnCompleteListener(task -> {
                     boolean validUsr = false;
                     QuerySnapshot result = task.getResult();
                     for (QueryDocumentSnapshot user : result) {
                         if (user.get("username").equals(usr)) {
-                            if (user.get("password").equals(password))
+                            if (user.get("password").equals(password)) {
                                 validUsr = true;
+                                sp.edit().putString("username", usr).apply();
+                                sp.edit().putString("email", user.get("email").toString()).apply();
+                            }
                             break;
                         }
                     }
@@ -52,8 +55,7 @@ public class SignInActivity extends AppCompatActivity {
                         etPass.setText("");
                     } else {
                         findViewById(R.id.pbSignIn).setVisibility(View.VISIBLE);
-                        SharedPreferences sp = getSharedPreferences("user", MODE_PRIVATE);
-                        sp.edit().putString("user", usr).apply();
+
                         startActivity(new Intent(this, OrderActivity.class));
                         finish();
                     }

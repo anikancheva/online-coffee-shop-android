@@ -5,24 +5,29 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MyOrdersActivity extends AppCompatActivity {
+public class MyOrderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_orders);
+        setContentView(R.layout.activity_my_order);
 
-        findViewById(R.id.testBtnOrders).setOnClickListener(view -> {
-            ListView myList = findViewById(R.id.myList);
+        TextView orderInfo = findViewById(R.id.txtOrderInfo);
+        Intent intent=getIntent();
 
-        });
+       String type= intent.getStringExtra("type");
+        String size=  intent.getStringExtra("size");
+        String style=  intent.getStringExtra("style");
+        String flavors=  intent.getStringExtra("flavors");
+        String special=  intent.getStringExtra("special");
+
+        orderInfo.setText(type+"\n"+size+"\n"+style+"\n"+flavors+"\n"+special);
     }
 
     @Override
