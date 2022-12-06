@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -44,9 +46,13 @@ public class MyOrdersActivity extends AppCompatActivity {
                 }
             });
 
-            //TODO create view for list of orders:
-            //          orderInfo.setText();
+            OrderAdapter adapter=new OrderAdapter(orders);
+            RecyclerView rv=findViewById(R.id.allOrders);
+            rv.setAdapter(adapter);
+            rv.setLayoutManager(new LinearLayoutManager(this));
         });
+
+
 
         findViewById(R.id.btnSelectOrder).setOnClickListener(view -> {
 
