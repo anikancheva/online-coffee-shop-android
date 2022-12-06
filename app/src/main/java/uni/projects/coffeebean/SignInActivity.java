@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +34,7 @@ public class SignInActivity extends AppCompatActivity {
             if (validateInput(usr, password)) {
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
+
                 db.collection("users").get().addOnCompleteListener(task -> {
                     boolean validUsr = false;
                     QuerySnapshot result = task.getResult();

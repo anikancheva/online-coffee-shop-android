@@ -43,11 +43,13 @@ public class SignUpActivity extends AppCompatActivity {
             if (validateInput(usrName, email, password, confPassword)) {
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
+
                 Map<String, String> user=new HashMap<>();
                 user.put("username", usrName);
                 user.put("email", email);
                 user.put("password", password);
                 user.put("orders", "");
+
 
                 db.collection("users").get().addOnCompleteListener(task -> {
                     boolean usrExists = false;

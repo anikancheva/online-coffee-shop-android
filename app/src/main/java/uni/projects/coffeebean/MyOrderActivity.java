@@ -2,32 +2,51 @@ package uni.projects.coffeebean;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class MyOrderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_order);
+        setContentView(R.layout.activity_my_orders);
 
         TextView orderInfo = findViewById(R.id.txtOrderInfo);
-        Intent intent=getIntent();
+        String user = getSharedPreferences("user", MODE_PRIVATE).getString("username", null);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        List<Map<String, Object>> orders = new ArrayList<>();
 
-       String type= intent.getStringExtra("type");
-        String size=  intent.getStringExtra("size");
-        String style=  intent.getStringExtra("style");
-        String flavors=  intent.getStringExtra("flavors");
-        String special=  intent.getStringExtra("special");
+        db.collection("orders").get().addOnCompleteListener(task -> {
+            task.getResult().forEach(o -> {
+                if (o.get("user").toString().equals(user)) {
+                    Map<String, Object> current = new HashMap<>();
+                    current.put("type", o.get("type").toString());
+                    current.put("size", o.get("size").toString());
+                    current.put("style", o.get("style").toString());
+                    current.put("flavors", o.get("flavors"));
+                    current.put("special", o.get("special").toString());
+                    orders.add(current);
+                }
+            });
 
-        orderInfo.setText(type+"\n"+size+"\n"+style+"\n"+flavors+"\n"+special);
+            //TODO create view for list of orders:
+            //          orderInfo.setText();
+        });
     }
 
     @Override

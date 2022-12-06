@@ -16,7 +16,15 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -54,28 +62,28 @@ public class OrderActivity extends AppCompatActivity {
             }
             String special = etSpecial.getText().toString();
 
-//            Map<String, Object> order = new HashMap<>();
-//            order.put("type", type);
-//            order.put("size", size);
-//            order.put("style", style);
-//            order.put("flavors", checkedFlavors);
-//            order.put("special", special);
 
-            StringBuilder flavorBuilder = new StringBuilder();
-            checkedFlavors.forEach(f -> flavorBuilder.append(f).append(", "));
-            if (!checkedFlavors.isEmpty()) {
-                flavorBuilder.delete(flavorBuilder.length() - 2, flavorBuilder.length());
-            }
+            String user = getSharedPreferences("user", MODE_PRIVATE).getString("username", null);
 
-            Toast.makeText(this, "Successfull order!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MyOrderActivity.class);
-            intent.putExtra("type", type);
-            intent.putExtra("size", size);
-            intent.putExtra("style", style);
-            intent.putExtra("flavors", flavorBuilder.toString());
-            intent.putExtra("special", special);
-            startActivity(intent);
-            finish();
+            Map<String, Object> order = new HashMap<>();
+            order.put("user", user);
+            order.put("type", type);
+            order.put("size", size);
+            order.put("style", style);
+            order.put("flavors", checkedFlavors);
+            order.put("special", special);
+
+            FirebaseFirestore db=FirebaseFirestore.getInstance();
+            db.collection("orders").add(order).addOnCompleteListener(task -> {
+                task.addOnSuccessListener(documentReference -> {
+                    Toast.makeText(this, "Successfull order!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, MyOrderActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+            });
+
+
 
         });
 
