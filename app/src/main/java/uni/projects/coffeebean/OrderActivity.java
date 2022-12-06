@@ -16,10 +16,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -77,7 +73,7 @@ public class OrderActivity extends AppCompatActivity {
             db.collection("orders").add(order).addOnCompleteListener(task -> {
                 task.addOnSuccessListener(documentReference -> {
                     Toast.makeText(this, "Successfull order!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, MyOrderActivity.class);
+                    Intent intent = new Intent(this, MyOrdersActivity.class);
                     startActivity(intent);
                     finish();
                 });
@@ -106,7 +102,7 @@ public class OrderActivity extends AppCompatActivity {
             startActivity(new Intent(this, ProfileActivity.class));
 
         } else if (id == R.id.myOrders) {
-            startActivity(new Intent(this, MyOrderActivity.class));
+            startActivity(new Intent(this, MyOrdersActivity.class));
 
         } else if (id == R.id.signOut) {
             Intent intent = new Intent(this, MainActivity.class);

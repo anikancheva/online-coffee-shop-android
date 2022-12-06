@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,14 +20,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyOrderActivity extends AppCompatActivity {
+public class MyOrdersActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
 
-        TextView orderInfo = findViewById(R.id.txtOrderInfo);
         String user = getSharedPreferences("user", MODE_PRIVATE).getString("username", null);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<Map<String, Object>> orders = new ArrayList<>();
@@ -47,6 +47,11 @@ public class MyOrderActivity extends AppCompatActivity {
             //TODO create view for list of orders:
             //          orderInfo.setText();
         });
+
+        findViewById(R.id.btnSelectOrder).setOnClickListener(view -> {
+
+        });
+        findViewById(R.id.btnCreateNewOrder).setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), OrderActivity.class)));
     }
 
     @Override

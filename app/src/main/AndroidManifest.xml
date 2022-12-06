@@ -15,7 +15,7 @@
         <activity android:name=".OrderActivity"/>
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".SignInActivity"/>
-        <activity android:name=".MyOrderActivity"/>
+        <activity android:name=".MyOrdersActivity"/>
         <activity android:name=".ProfileActivity"/>
         <activity
             android:name=".MainActivity"

@@ -48,7 +48,6 @@ public class SignUpActivity extends AppCompatActivity {
                 user.put("username", usrName);
                 user.put("email", email);
                 user.put("password", password);
-                user.put("orders", "");
 
 
                 db.collection("users").get().addOnCompleteListener(task -> {
