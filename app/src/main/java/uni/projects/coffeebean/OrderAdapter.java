@@ -15,31 +15,27 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     private final List<Map<String, Object>> orders;
 
-    public OrderAdapter(List<Map<String, Object>> orders){
-        this.orders=orders;
+    public OrderAdapter(List<Map<String, Object>> orders) {
+        this.orders = orders;
     }
 
     @NonNull
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item, parent, false);
         return new OrderViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-        TextView tvOrderDaata = holder.itemView.findViewById(R.id.orderData);
+        TextView tvOrderData = holder.itemView.findViewById(R.id.orderData);
         Map<String, Object> currentOrder = orders.get(position);
-        StringBuilder tvBuilder=new StringBuilder();
-        currentOrder.values().forEach(v->{
-            tvBuilder.append(v).append(" / ");
-        });
-        tvBuilder.delete(tvBuilder.length()-3, tvBuilder.length());
-        tvOrderDaata.setText(tvBuilder);
+        StringBuilder tvBuilder = new StringBuilder();
+        currentOrder.values().forEach(v -> tvBuilder.append(v).append(" / "));
+        tvBuilder.delete(tvBuilder.length() - 3, tvBuilder.length());
+        tvOrderData.setText(tvBuilder);
 
-        holder.itemView.findViewById(R.id.orderItem).setOnClickListener(view -> {
 
-        });
     }
 
     @Override
